@@ -1,0 +1,471 @@
+# IoTMart Campaign Page — URL-based Media Example / 圖片改用線上 URL 的範例
+# 本檔示範圖片欄位直接填「完整外部網址」而非交付包內相對路徑；其餘規則與 IoTMart_Campaign_Template.yaml 相同。
+# This file demonstrates media fields holding a full external URL instead of a package-relative path; all other rules match IoTMart_Campaign_Template.yaml.
+#
+# 對照 Mapping:
+#   banner 系列產品圖 (productImage)  → WBanner-Product.png
+#   banner 淺色背景 (image)           → Wireless-BG26.jpg
+#   icon 欄位（全部共用同一張，示範用）  → beenhere_24dp_...png
+#   深色背景欄位（全部共用同一張，示範用）→ poe-BG-service.png
+#   產品圖欄位（5 張網址循環使用）      → MIC-733 / MIC-713 / MIC-715 / ADAM-4017 / WOP
+#   cmpFeatureGallery 4 張 pictureBg   → BG-medical / BG-LLM / BG-robotic / solutionBG-16_drone
+#
+# 未指定網址、維持原交付包相對路徑 Left as package-relative paths (no URL supplied):
+#   'seoPreviewImage'（頁面層級）、'backgroundSeries1'（cmpProductCollection）
+#
+# 欄位標記 Legend:  K = 控制 Control · L = 鎖定 Locked · 無標記 = 內容 Content
+# 系統欄位 jcr:uuid / mgnl:* 一律不填 System fields (jcr:uuid, mgnl:*) must be omitted.
+'campaign-slug':  # 替換為活動代稱 Replace with the campaign slug
+  'description': 'Browse popular I/O modules and find the right series for your application.'
+  'fullWidth': true  # K · true | false
+  'hideFromSearch': false  # L · false
+  'seoPreviewImage': 'assets/page/seoPreviewImage.jpg'
+  'showPagination': true  # L · true
+  'showRequuestForm': true  # L · true
+  'subTitle': 'Industrial I/O Series'
+  'textColor': 'dark'  # K · dark | light
+  'themes': 'blue'  # L · blue
+  'title': 'Explore ADAM Series Modules'
+  'jcr:primaryType': 'mgnl:page'
+  'mgnl:template': 'advantech-templates:pages/campaignPage/campaignPage'
+  'mainBody':
+    'jcr:primaryType': 'mgnl:area'
+
+    # [0] cmpBanner — 主視覺橫幅 / Hero Banner
+    # 頁首主視覺：標籤、標題、說明與單一 CTA。 Page hero: tag, title, description and one CTA.
+    '0':
+      'CTALabel': 'View More'
+      'CTALink': '#'
+      'desc': 'The ADAM series modules are designed for industrial IoT applications, supporting multiple I/O interfaces and communication protocols. From remote monitoring and environmental sensing to device connectivity, ADAM delivers a flexible and dependable solution.'
+      'fullWidth': true  # K · true | false
+      'image': 'https://irp.cdn-website.com/56869327/dms3rep/multi/Wireless-BG26.jpg'
+      'jcr:primaryType': 'mgnl:component'
+      'mgnl:template': 'advantech-templates:components/cmpBanner/cmpBanner'
+      'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/WBanner-Product.png'
+      'subTitle': 'Versatile · Reliable · Scalable'
+      'tag': '#IndustrialIoT #DataAcquisition #SmartFactory'
+      'textColor': 'dark'  # K · dark | light
+      'title': 'ADAM Remote I/O Series'
+
+    # [1] cmpFeatureCard — 賣點卡片區 / Feature Cards
+    # 左側文案、右側 2×2 賣點卡片。 Copy on the left, 2×2 feature cards on the right.
+    '1':
+      'background': 'https://irp.cdn-website.com/56869327/dms3rep/multi/poe-BG-service.png'
+      'description': 'With over 40 years of industry adoption, Advantech’s ADAM remote I/O modules offer a complete range of solutions—from robust RS-485 I/O and modular systems to Ethernet and secure OPC UA I/O—designed to meet evolving connectivity and control needs in industrial automation.'
+      'fullWidth': true  # K · true | false
+      'jcr:primaryType': 'mgnl:component'
+      'mgnl:template': 'advantech-templates:components/cmpFeatureCard/cmpFeatureCard'
+      'title': 'The Reasons to Choose ADAM Remote I/O Series'
+      'useThemeColor': true  # L · true
+      # 項目群組 Item group: featureItems0..n（由 0 起連續 / contiguous from 0）
+      'featureItems':
+        'featureItems0':
+          'description': 'Rugged industrial build ensures long-term operation with minimal failures and lower maintenance costs.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'High-Reliability Design'
+          'visible': true  # K · true | false
+        'featureItems1':
+          'description': 'Supports multiple protocols for all scale deployments - simplifying integration and meet diverse needs.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Diverse I/O Selection'
+          'visible': true  # K · true | false
+        'featureItems2':
+          'description': 'Enhanced device intelligence with data filtering, burn-out detection, and built-in P2P and GCL communication / control functions.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Device Intelligence'
+          'visible': true  # K · true | false
+        'featureItems3':
+          'description': 'Supports OTA updates and remote I/O logging for seamless cross-site monitoring and control.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Cloud-Based Device Management'
+          'visible': true  # K · true | false
+
+    # [2] cmpFeatureList — 特色列表區 / Feature List
+    # 眉標＋標題＋說明，下方橫排特色項目。 Eyebrow, title and text, with feature items in a row.
+    '2':
+      'background': 'https://irp.cdn-website.com/56869327/dms3rep/multi/poe-BG-service.png'
+      'description': 'OT users with traditional Modbus TCP setups can now upgrade to cloud management—without replacing equipment or changing workflows. In just three minutes, register for EdgeHub!'
+      'fullWidth': true  # K · true | false
+      'jcr:primaryType': 'mgnl:component'
+      'mgnl:template': 'advantech-templates:components/cmpFeatureList/cmpFeatureList'
+      'subTitle': 'ADAM-6000/6200 Series'
+      'textColor': 'dark'  # K · dark | light
+      'title': 'Enabling Cross-Site RemoteDevice Management empowered by EdgeHub'
+      'useThemeColor': true  # L · true
+      # 項目群組 Item group: featureItems0..n（由 0 起連續 / contiguous from 0）
+      'featureItems':
+        'featureItems0':
+          'description': 'Easily manage all your ADAM I/O across multiple sites using the intuitive and familiar Advantech IO Module utility directly on your PC anywhere anytime.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'subTitle': 'Easy Deployment & Flexible Expansion'
+          'visible': true  # K · true | false
+        'featureItems1':
+          'description': 'Ensure device and data security with a secure connection featuring X.509 authentication and TLS encryption, and allowlisting against cyberattacks.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'subTitle': 'Secure Management No extra Effort'
+          'visible': true  # K · true | false
+        'featureItems2':
+          'description': 'Eliminate the need for on-site engineers and streamline operations through cross-site management remotely.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'subTitle': 'Reduced On-Site Maintenance'
+          'visible': true  # K · true | false
+
+    # [3] cmpProductAnchors — 系列錨點導覽 / Series Anchors
+    # 系列卡片；點擊捲動至頁內目標元件。 Series cards that scroll to an on-page target component.
+    '3':
+      'backgroundImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/poe-BG-service.png'
+      'description': 'Meeting All Your Industrial I/O Needs'
+      'fullWidth': true  # K · true | false
+      'jcr:primaryType': 'mgnl:component'
+      'mgnl:template': 'advantech-templates:components/cmpProductAnchors/cmpProductAnchors'
+      'textColor': 'light'  # K · dark | light
+      'title': 'Advantech ADAM Series'
+      # 項目群組 Item group: seriesItems0..n（由 0 起連續 / contiguous from 0）
+      'seriesItems':
+        'seriesItems0':
+          'anchorID': '4'
+          'itemDescription': '6000/6200 Series'
+          'itemImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-733-bdd95725.png'
+          'itemTitle': 'Ethernet I/O Modules'
+          'visible': true  # K · true | false
+        'seriesItems1':
+          'itemDescription': 'ADAM-6300 Series'
+          'itemImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-713-03ad6cc9.png'
+          'itemTitle': 'OPC UA Ethernet I/O'
+          'visible': true  # K · true | false
+          'anchorID': '6'
+        'seriesItems2':
+          'itemDescription': '4000/4100 Series'
+          'itemImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-715.png'
+          'itemTitle': 'RS-485 Serial I/O'
+          'visible': true  # K · true | false
+          'anchorID': '9'
+
+    # [4] cmpProductSeriesCarousel — 系列輪播 / Series Carousel
+    # 產品卡片輪播，附分頁點與 CTA。 Product card carousel with pagination and CTA.
+    '4':
+      'description': 'Browse popular I/O modules and find the right series for your application.'
+      'fullWidth': false  # K · true | false
+      'jcr:primaryType': 'mgnl:component'
+      'mgnl:template': 'advantech-templates:components/cmpProductSeriesCarousel/cmpProductSeriesCarousel'
+      'showPagination': true  # L · true
+      'subTitle': 'Industrial I/O Series'
+      'textColor': 'dark'  # K · dark | light
+      'title': 'Explore ADAM Series Modules'
+      # 項目群組 Item group: productItems0..n（由 0 起連續 / contiguous from 0）
+      'productItems':
+        'productItems0':
+          'buttonText': 'SHOP NOW'
+          'productDescription': 'ADAM-6050'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/ADAM-4017.png'
+          'productLink': '#'
+          'productTitle': 'Ethernet I/O Module'
+          'visible': true  # K · true | false
+        'productItems1':
+          'buttonText': 'SHOP NOW'
+          'productDescription': 'ADAM-6050'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/WOP-8f68ee68.png'
+          'productLink': '#'
+          'productTitle': 'Ethernet I/O Module'
+          'visible': true  # K · true | false
+        'productItems2':
+          'buttonText': 'SHOP NOW'
+          'productDescription': 'ADAM-6050'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-733-bdd95725.png'
+          'productLink': '#'
+          'productTitle': 'Ethernet I/O Module'
+          'visible': true  # K · true | false
+        'productItems3':
+          'buttonText': 'SHOP NOW'
+          'productDescription': 'ADAM-6050'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-713-03ad6cc9.png'
+          'productLink': '#'
+          'productTitle': 'Ethernet I/O Module'
+          'visible': true  # K · true | false
+
+    # [5] cmpFeatureGallery — 產業應用圖庫 / Feature Gallery
+    # 滿版圖片卡片，展示產業應用。 Full-image cards presenting industry applications.
+    '5':
+      'description': 'IoTMart empowers digital transformation with cutting-edge IoT, AI, and edge computing technologies. Our solutions are designed to enhance efficiency, sustainability, and connectivity across multiple sectors.'
+      'fullWidth': false  # K · true | false
+      'jcr:primaryType': 'mgnl:component'
+      'mgnl:template': 'advantech-templates:components/cmpFeatureGallery/cmpFeatureGallery'
+      'subTitle': 'IoTMart Solutions'
+      'textColor': 'dark'  # K · dark | light
+      'title': 'Driving Innovation Across Industries'
+      # 項目群組 Item group: featureItems0..n（由 0 起連續 / contiguous from 0）
+      'featureItems':
+        'featureItems0':
+          'description': 'Boost production efficiency with AI-driven monitoring, predictive maintenance, and smart robotics for modern manufacturing.'
+          'pictureBg': 'https://irp.cdn-website.com/56869327/dms3rep/multi/BG-medical.png'
+          'title': 'Factory Automation'
+        'featureItems1':
+          'description': 'Enable intelligent traffic control, public safety, and energy optimization to build greener, more connected urban environments.'
+          'pictureBg': 'https://irp.cdn-website.com/56869327/dms3rep/multi/BG-LLM.png'
+          'title': 'Smart City Infrastructure'
+        'featureItems2':
+          'description': 'Deliver real-time insights into energy consumption, grid stability, and predictive analytics to ensure reliable and sustainable operations.'
+          'pictureBg': 'https://irp.cdn-website.com/56869327/dms3rep/multi/BG-robotic.png'
+          'title': 'Energy & Utility Monitoring'
+        'featureItems3':
+          'description': 'Optimize fleet management, passenger safety, and operational efficiency with IoT-enabled monitoring and predictive scheduling.'
+          'pictureBg': 'https://irp.cdn-website.com/56869327/dms3rep/multi/solutionBG-16_drone.jpeg'
+          'title': 'Transportation & Railway Systems'
+
+    # [6] cmpProductGrid — 產品網格 / Product Grid
+    # 產品橫排網格，每項附 CTA 按鈕。 Product grid in a row; each item has a CTA button.
+    '6':
+      'backgroundImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/poe-BG-service.png'
+      'description': 'IoTMart industrial Ethernet switches are built for mission-critical applications, providing secure, stable, and scalable connectivity for your industrial networks.'
+      'fullWidth': true  # K · true | false
+      'jcr:primaryType': 'mgnl:component'
+      'mgnl:template': 'advantech-templates:components/cmpProductGrid/cmpProductGrid'
+      'subTitle': 'Reliable Networking for Harsh Environments'
+      'textColor': 'light'  # K · dark | light
+      'title': 'Industrial Ethernet Solutions'
+      # 項目群組 Item group: productItems0..n（由 0 起連續 / contiguous from 0）
+      'productItems':
+        'productItems0':
+          'productCTA': 'Shop Now'
+          'productDescription': '5 10/100Mbps Unmanaged Ethernet Switch'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-715.png'
+          'productLink': '#'
+          'productName': 'EKI-2525-BE'
+          'visible': true  # K · true | false
+        'productItems1':
+          'productCTA': 'Shop Now'
+          'productDescription': '5+1 10/100Mbps Unmanaged Ethernet Switch, Wide Temp'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/ADAM-4017.png'
+          'productLink': '#'
+          'productName': 'EKI-2526I-BE'
+          'visible': true  # K · true | false
+        'productItems2':
+          'productCTA': 'Shop Now'
+          'productDescription': '5-Port 10/100/1000Mbps Unmanaged Ethernet Switch'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/WOP-8f68ee68.png'
+          'productLink': '#'
+          'productName': 'EKI-2725-BE'
+          'visible': true  # K · true | false
+        'productItems3':
+          'productCTA': 'Shop Now'
+          'productDescription': '28-Port Managed Industrial Ethernet Switch with Gigabit Combo Ports'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-733-bdd95725.png'
+          'productLink': '#'
+          'productName': 'EKI-7428G-4CI'
+          'visible': true  # K · true | false
+
+    # [7] cmpFaqList — 常見問答 / FAQ List
+    # 置中問答清單，逐項展開。 Centered Q&A list with expandable items.
+    '7':
+      'backgroundColor': '#fffffff'  # K · #FFFFFF
+      'fullWidth': true  # K · true | false
+      'jcr:primaryType': 'mgnl:component'
+      'mgnl:template': 'advantech-templates:components/cmpFaqList/cmpFaqList'
+      'subTitle': 'IoTMart Support Center'
+      'textColor': 'dark'  # K · dark | light
+      'title': 'Frequently Asked Questions'
+      # 項目群組 Item group: faqItems0..n（由 0 起連續 / contiguous from 0）
+      'faqItems':
+        'faqItems0':
+          'answer': 'Yes. You can browse, compare, and purchase IoTMart products directly through our official website, with worldwide shipping and secure payment options.'
+          'isVisible': true  # K · true | false
+          'question': 'Can I purchase IoTMart products directly online?'
+        'faqItems1':
+          'answer': 'IoTMart offers a wide range of industrial computing devices, gateways, sensors, and edge AI systems that enable reliable data acquisition and real-time analytics.'
+          'isVisible': true  # K · true | false
+          'question': 'What types of products does IoTMart offer?'
+
+    # [8] cmpFeatureSection — 特色區塊（左文右卡） / Feature Section
+    # 左側雙段文案、右側 3×2 特色卡片。 Two-paragraph copy on the left, 3×2 cards on the right.
+    '8':
+      'description': 'IoTMart Edge AI solutions bring advanced analytics and AI inference directly to industrial environments. By processing data at the edge, enterprises can reduce latency, enhance reliability, and unlock real-time insights for smarter operations.'
+      'fullWidth': true  # K · true | false
+      'horizontalLayout': true  # L · true
+      'itemsBackground': true  # L · true
+      'jcr:primaryType': 'mgnl:component'
+      'mgnl:template': 'advantech-templates:components/cmpFeatureSection/cmpFeatureSection'
+      'secondaryDescription': 'IoTMart Edge AI solutions bring advanced analytics and AI inference directly to industrial environments. By processing data at the edge, enterprises can reduce latency, enhance reliability, and unlock real-time insights for smarter operations.'
+      'subTitle': 'IoTMart Edge AI Platform'
+      'textColor': 'dark'  # K · dark | light
+      'title': 'Built for Intelligent Industrial Operations'
+      'useThemeColor': true  # L · true
+      # 項目群組 Item group: featureItems0..n（由 0 起連續 / contiguous from 0）
+      'featureItems':
+        'featureItems0':
+          'description': 'Run AI models locally to deliver instant insights without cloud dependency.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Real-Time Inference'
+          'visible': true  # K · true | false
+        'featureItems1':
+          'description': 'Enable fast reaction times for mission-critical industrial scenarios.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Low Latency Response'
+          'visible': true  # K · true | false
+        'featureItems2':
+          'description': 'Designed for stable operation in harsh environments and continuous workloads.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Industrial-Grade Reliability'
+          'visible': true  # K · true | false
+        'featureItems3':
+          'description': 'Seamlessly integrate with PLC, SCADA, MES, and existing industrial systems.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Flexible Integration'
+          'visible': true  # K · true | false
+        'featureItems4':
+          'description': 'Built-in security features protect data, devices, and network access.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Secure by Design'
+          'visible': true  # K · true | false
+        'featureItems5':
+          'description': 'Built-in security features protect data, devices, and network access.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Secure by Design'
+          'visible': true  # K · true | false
+
+    # [9] cmpProductCollection — 產品系列集合 / Product Collection
+    # 3 個系列卡，各附要點與產品清單。 Three series cards, each with bullets and a product list.
+    '9':
+      'backgroundSeries1': 'assets/9-cmpProductCollection/backgroundSeries1.jpg'
+      'description': 'Discover three popular product series and quickly configure the right models for your project.'
+      'fullWidth': true  # K · true | false
+      'jcr:primaryType': 'mgnl:component'
+      'mgnl:template': 'advantech-templates:components/cmpProductCollection/cmpProductCollection'
+      'series1Desc1': 'Built for 24/7 industrial operations with reliable performance, flexible I/O, and wide temperature support.'
+      'series1Desc2': 'Fanless architecture ensures silent and reliable performance'
+      'series1Desc3': 'Flexible I/O and expansion for diverse industrial needs'
+      'series1Desc4': 'Wide temperature support for harsh environments'
+      'series1Image': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-733-bdd95725.png'
+      'series1Subtitle': 'Rugged All-in-One Computing'
+      'series1Title': 'Panel PC Series'
+      'series2Desc1': 'High-brightness displays for clear industrial visualization'
+      'series2Desc2': 'Durable touch panels optimized for continuous use'
+      'series2Image': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-713-03ad6cc9.png'
+      'series2Subtitle': 'Reliable Industrial Displays'
+      'series2Title': 'Touch Monitor Series'
+      'series3Desc1': 'Compact fanless systems for edge computing applications'
+      'series3Desc2': 'Optimized for AI inference and real-time processing'
+      'series3Desc3': 'Rich I/O support for sensors and industrial devices'
+      'series3Desc4': 'Ideal for machine vision and automation systems'
+      'series3Image': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-715.png'
+      'series3Subtitle': 'Compact Edge Computing'
+      'series3Title': 'Box PC Series'
+      'subTitle': 'Explore Featured Series'
+      'textColor': 'dark'  # K · dark | light
+      'title': 'IoTMart Product Collection'
+      # 項目群組 Item group: series1Products0..n（由 0 起連續 / contiguous from 0）
+      'series1Products':
+        'series1Products0':
+          'productCTA': 'Configure'
+          'productDesc': '18.5" FHD LCD, Intel® Atom® x6000E'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-713-03ad6cc9.png'
+          'productLink': '#'
+          'productName': 'PPC-3180-J20A'
+        'series1Products1':
+          'productCTA': 'Configure'
+          'productDesc': '23.8" FHD LCD, Intel® Core™ (Options)'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-715.png'
+          'productLink': '#'
+          'productName': 'PPC-324W-RK2A'
+        'series1Products2':
+          'productCTA': 'Configure'
+          'productDesc': 'Slim Fanless Panel PC for Space-Constrained Installations'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/ADAM-4017.png'
+          'productLink': '#'
+          'productName': 'PPC-3100S'
+      # 項目群組 Item group: series2Products0..n（由 0 起連續 / contiguous from 0）
+      'series2Products':
+        'series2Products0':
+          'productCTA': 'Configure'
+          'productDesc': '12.1" XGA TFT LCD, Intel® Celeron® J6412'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/WOP-8f68ee68.png'
+          'productLink': '#'
+          'productName': 'PPC-312-PJ60A'
+        'series2Products1':
+          'productCTA': 'Configure'
+          'productDesc': '12.1" XGA TFT LCD, Intel® Celeron® J6412'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-733-bdd95725.png'
+          'productLink': '#'
+          'productName': 'PPC-315-RJ60A'
+        'series2Products2':
+          'productCTA': 'Configure'
+          'productDesc': '12.1" XGA TFT LCD, Intel® Celeron® J6412 (Wide Temp)'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-713-03ad6cc9.png'
+          'productLink': '#'
+          'productName': 'PPC-315-RJ80A'
+      # 項目群組 Item group: series3Products0..n（由 0 起連續 / contiguous from 0）
+      'series3Products':
+        'series3Products0':
+          'productCTA': 'Learn More'
+          'productDesc': 'Compact Embedded Box PC, Multiple I/O Options'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/MIC-715.png'
+          'productLink': '#'
+          'productName': 'TPC-312-RE23A'
+        'series3Products1':
+          'productCTA': 'Learn More'
+          'productDesc': 'Fanless Box PC, Intel® Processor Options'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/ADAM-4017.png'
+          'productLink': '#'
+          'productName': 'TPC-315-RJ23A'
+        'series3Products2':
+          'productCTA': 'Learn More'
+          'productDesc': '21.5" Industrial Monitor, Touch Options Available'
+          'productImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/WOP-8f68ee68.png'
+          'productLink': '#'
+          'productName': 'FPM-215-R9AE'
+
+    # [10] cmpFeatureCarousel — 特色輪播 / Feature Carousel
+    # 特色卡片輪播，附分頁點與換頁箭頭。 Feature card carousel with pagination and arrows.
+    '10':
+      'backgroundImage': 'https://irp.cdn-website.com/56869327/dms3rep/multi/poe-BG-service.png'
+      'description': 'IoTMart Edge AI solutions bring advanced analytics and AI inference directly to industrial environments, enabling real-time decision-making with minimal latency. By processing data closer to machines and devices, organizations can reduce bandwidth usage, enhance system reliability, and deploy scalable edge intelligence across diverse industrial applications.'
+      'enableCarousel': true  # L · true
+      'fullWidth': true  # K · true | false
+      'jcr:primaryType': 'mgnl:component'
+      'mgnl:template': 'advantech-templates:components/cmpFeatureCarousel/cmpFeatureCarousel'
+      'showPagination': true  # L · true
+      'subTitle': 'IoTMart Edge AI Solutions'
+      'textColor': 'light'  # K · dark | light
+      'title': 'Accelerate Intelligence at the Edge'
+      'useThemeColor': true  # L · true
+      # 項目群組 Item group: featureItems0..n（由 0 起連續 / contiguous from 0）
+      'featureItems':
+        'featureItems0':
+          'description': 'Deploy AI models on-device to deliver instant insights without relying on cloud connectivity.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Real-Time Inference'
+          'visible': true  # K · true | false
+        'featureItems1':
+          'description': 'Enable fast and deterministic responses for mission-critical industrial operations.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Low Latency Response'
+          'visible': true  # K · true | false
+        'featureItems2':
+          'description': 'Designed for continuous operation in harsh environments with wide temperature support.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Rugged Reliability'
+          'visible': true  # K · true | false
+        'featureItems3':
+          'description': 'Seamlessly connect sensors, PLCs, and industrial field devices.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Flexible I/O Integration'
+          'visible': true  # K · true | false
+        'featureItems4':
+          'description': 'Built-in security mechanisms protect data, devices, and network access.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Secure by Design'
+          'visible': true  # K · true | false
+        'featureItems5':
+          'description': 'Easily expand from pilot projects to large-scale industrial rollouts.'
+          'icon': 'https://irp.cdn-website.com/56869327/dms3rep/multi/beenhere_24dp_E8EAED_FILL0_wght200_GRAD0_opsz24+1.png'
+          'title': 'Scalable Deployment'
+          'visible': true  # K · true | false
+
+    # [11] cmpConceptIntro — 概念介紹 / Concept Intro
+    # 左標題、右說明的概念段落。 Concept paragraph: heading left, text right.
+    '11':
+      'description': 'Single-Line Power Technology enables both data and power to be transmitted simultaneously through a single Ethernet cable, significantly simplifying industrial network deployment. By reducing the need for separate power wiring, this approach improves installation efficiency, enhances system reliability, and lowers overall maintenance costs. It is particularly well suited for modern industrial environments where space, scalability, and operational stability are critical, providing a streamlined and robust solution for powering connected devices across the network.'
+      'fullWidth': true  # K · true | false
+      'jcr:primaryType': 'mgnl:component'
+      'mgnl:template': 'advantech-templates:components/cmpConceptIntro/cmpConceptIntro'
+      'theme': 'full-background'  # L · full-background
+      'title': 'Single-Line Power Technology: Working Principles and Advantages'
